@@ -21,28 +21,22 @@ public class testGame {
     @Test
     public void testGameBuildDeck(){
         Game g = new Game();
-        g.buildDeck();
         assertEquals(52,g.deck.size());
-
     }
 
     @Test
     public void testInitialDeal() {
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
-        u.initialDeal();
-
+        g.theUser.initialDeal();
         assertEquals(2, g.cols.get(0).size());
     }
 
     @Test //test if the col size increase after hitting
     public void testColSizeAfterHit(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
         g.cols.add(new ArrayList<Card>());
-        u.hit(0);
+        g.theUser.hit(0);
 
         assertEquals(1, g.cols.get(0).size());
     }
@@ -50,11 +44,10 @@ public class testGame {
     @Test //test if user can hit when isStay is true
     public void testisStayForHit() {
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
         g.cols.add(new ArrayList<Card>());
-        u.zeroStayed = true;
-        u.hit(0);
+        g.theUser.zeroStayed = true;
+        g.theUser.hit(0);
 
         //assertEquals(false, u.isBusted);
     }
@@ -62,123 +55,102 @@ public class testGame {
     @Test //test if user can hit after busted
     public void testisStayAfterBusted() {
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         Card card3 = new Card(10, Suit.Hearts, true);
         g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(0,card1);
-        g.dealCardToCol(0,card2);
-        g.dealCardToCol(0,card3);
+        g.theUser.dealCardToCol(0,card1);
+        g.theUser.dealCardToCol(0,card2);
+        g.theUser.dealCardToCol(0,card3);
         //g.colScore(0);
-        u.hit(0);
-
-        //assertEquals(true, u.isBusted);
+        g.theUser.isBusted(0);
+        assertEquals(true, g.theUser.isBusted);
     }
 
-    @Test
-    public void testHitFor3rdCol() {
-        Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
-        Card card1 = new Card(10, Suit.Clubs, true);
-        Card card2 = new Card(10, Suit.Diamonds, true);
-        g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(3,card1);
-        g.dealCardToCol(3,card2);
 
-        u.hit(3);
-
-        assertEquals(0, g.cols.get(0).size());
-    }
 
     @Test
     public void testStay(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(0,card1);
-        g.dealCardToCol(0,card2);
-        u.stay(0);
+        g.theUser.dealCardToCol(0,card1);
+        g.theUser.dealCardToCol(0,card2);
+        g.theUser.stay(0);
 
-        assertEquals(true, u.zeroStayed);
+        assertEquals(true, g.theUser.zeroStayed);
     }
 
     @Test
     public void testNotStay(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
+         
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(0,card1);
-        g.dealCardToCol(0,card2);
-        u.stay(3);
+        g.theUser.dealCardToCol(0,card1);
+        g.theUser.dealCardToCol(0,card2);
+        g.theUser.stay(3);
 
-        assertEquals(false, u.zeroStayed);
+        assertEquals(false, g.theUser.zeroStayed);
     }
 
     @Test
     public void testStayForBusted(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
+
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         Card card3 = new Card(10, Suit.Hearts, true);
         g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(0,card1);
-        g.dealCardToCol(0,card2);
-        g.dealCardToCol(0,card3);
+        g.theUser.dealCardToCol(0,card1);
+        g.theUser.dealCardToCol(0,card2);
+        g.theUser.dealCardToCol(0,card3);
         //g.colScore(0);
-        u.stay(0);
+        g.theUser.isBusted(0);
 
-        //assertEquals(true, u.isBusted);
+        assertEquals(true, g.theUser.isBusted);
     }
 
     @Test
     public void testStayFor0ColBusted(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(0,card1);
-        g.dealCardToCol(0,card2);
+        g.theUser.dealCardToCol(0,card1);
+        g.theUser.dealCardToCol(0,card2);
         //g.colScore(0);
-        u.stay(0);
+        g.theUser.stay(0);
 
-        assertEquals(true, u.zeroStayed);
+        assertEquals(true, g.theUser.zeroStayed);
     }
 
     @Test
     public void testStayFor1ColBusted(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
-        g.dealCardToCol(1,card1);
-        g.dealCardToCol(1,card2);
+        g.theUser.dealCardToCol(1,card1);
+        g.theUser.dealCardToCol(1,card2);
         //g.colScore(0);
-        u.stay(1);
+        g.theUser.stay(1);
 
-        assertEquals(true, u.oneStayed);
+        assertEquals(true, g.theUser.oneStayed);
     }
 
     @Test
     public void testDoubleDown(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
-        int result = u.doubleDown(20);
+
+        int result = g.theUser.doubleDown(20);
 
         assertEquals(40, result);
     }
@@ -186,58 +158,52 @@ public class testGame {
     @Test
     public void testSplit(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(8, Suit.Diamonds, true);
-        g.dealCardToCol(0, card1);
-        g.dealCardToCol(0, card2);
-        u.split();
+        g.theUser.dealCardToCol(0, card1);
+        g.theUser.dealCardToCol(0, card2);
+        g.theUser.split();
 
-        assertEquals(true, u.isSplit);
+        assertEquals(true, g.theUser.isSplit);
 
     }
 
     @Test
     public void testNotSplit() {
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
-        g.dealCardToCol(0, card1);
-        g.dealCardToCol(0, card2);
-        u.split();
+        g.theUser.dealCardToCol(0, card1);
+        g.theUser.dealCardToCol(0, card2);
+        g.theUser.split();
 
-        assertEquals(false, u.isSplit);
+        assertEquals(false, g.theUser.isSplit);
     }
 
     @Test
     public void testSplitForOneCard(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
-        Card card1 = new Card(8, Suit.Clubs, true);
-        g.dealCardToCol(0, card1);
-        u.split();
 
-        assertEquals(false, u.isSplit);
+        Card card1 = new Card(8, Suit.Clubs, true);
+        g.theUser.dealCardToCol(0, card1);
+        g.theUser.split();
+
+        assertEquals(false, g.theUser.isSplit);
     }
 
     @Test
     public void testSplitWithOneCardIn2ndCol(){
         Game g = new Game();
-        User u = new User(g);
-        u.hostGame = g;
+
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(9, Suit.Clubs, true);
         Card card3 = new Card(7, Suit.Clubs, true);
-        g.dealCardToCol(0, card1);
-        g.dealCardToCol(0, card2);
-        g.dealCardToCol(1, card3);
-         u.split();
+        g.theUser.dealCardToCol(0, card1);
+        g.theUser.dealCardToCol(0, card2);
+        g.theUser.dealCardToCol(1, card3);
+        g.theUser.split();
 
-        assertEquals(false, u.isSplit);
+        assertEquals(false, g.theUser.isSplit);
     }
 
 

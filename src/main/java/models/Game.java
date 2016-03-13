@@ -29,6 +29,8 @@ public class Game implements Serializable {
     public String errorCode;
 
     public Game() {
+        buildDeck();
+
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());

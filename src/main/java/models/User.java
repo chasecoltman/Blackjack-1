@@ -15,6 +15,7 @@ public class User extends Player implements Serializable{
     public Boolean zeroStayed=false;
     public Boolean oneStayed=false;
     public Boolean isSplit = false;
+    public Boolean isBusted = false;
     public int cardValue;
     public int colPos;
 
@@ -28,7 +29,12 @@ public class User extends Player implements Serializable{
     }
 
     public boolean isBusted(int col){
-        return  colScore(col)>21;
+        if (colScore(col) > 21){
+            isBusted = true;
+            return true;
+        }
+        isBusted = false;
+        return false;
     }
 
     public boolean loses (){
@@ -48,11 +54,11 @@ public class User extends Player implements Serializable{
         else if ( (col==0 && zeroStayed) || (col==1 && oneStayed) ) { //if user chose to stay
              return "Unable to hit: You've already chose to stay.";
             //isBusted = false;
-
         }
+
         else { //else deal a card
-            Card newCard =  drawCard();
-             dealCardToCol(col,newCard);
+            Card newCard = drawCard();
+            dealCardToCol(col,newCard);
         }
          return " ";
 
@@ -91,16 +97,13 @@ public class User extends Player implements Serializable{
             if( cols.get(0).size()!=2){
                 return " ";
             }
-
             //check if there is already a card in the 2nd col
             if( cols.get(1).size()!=0){
                 return " ";
             }
-
             //get value of card1 and card2 of col
             int val1 =  cols.get(0).get(0).getValue();
             int val2 =  cols.get(0).get(1).getValue();               //get the 2nd card from the col 0
-
             //if both cards has the same value and user has not split yet (can only split once)
 
             if ( val1==val2 || !zeroStayed  || !oneStayed || !isSplit) {
@@ -116,8 +119,6 @@ public class User extends Player implements Serializable{
 
                 isSplit = true;
             }
-
-
             else {
                 return "Unable to split cards.";
             }
@@ -148,6 +149,9 @@ public class User extends Player implements Serializable{
         zeroStayed=false;
     }
 
-    public User (){}
+    public User (){
+
+
+    }
 
 }
