@@ -15,10 +15,13 @@ public class User extends Player implements Serializable{
     public Boolean zeroStayed=false;
     public Boolean oneStayed=false;
     public Boolean isSplit = false;
+<<<<<<< HEAD
     public Boolean isBusted = false;
+=======
+    public boolean didBet = false;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
     public int cardValue;
     public int colPos;
-
 
     public void initialDeal(){
         Card card1= drawCard();
@@ -57,8 +60,14 @@ public class User extends Player implements Serializable{
         }
 
         else { //else deal a card
+<<<<<<< HEAD
             Card newCard = drawCard();
             dealCardToCol(col,newCard);
+=======
+            Card newCard =  drawCard();
+             dealCardToCol(col,newCard);
+            didBet = false;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         }
          return " ";
 
@@ -118,6 +127,7 @@ public class User extends Player implements Serializable{
                  cols.get(1).add(newCard2);
 
                 isSplit = true;
+                didBet = false;
             }
             else {
                 return "Unable to split cards.";
@@ -126,22 +136,6 @@ public class User extends Player implements Serializable{
         return " ";
     }
 
-    /**public int userBet(){
-         playerWin =  isPlayerWin();
-        if( playerWin = true){
-             totalCash +=  pot;
-            return  totalCash;
-        }
-        else if( playerWin = false){
-             totalCash -=  pot;
-            return  totalCash;
-        }
-         pot += ( bet * 2);
-         didBet = true;
-        return  totalCash;
-    }**/
-
-
     public User(java.util.List<java.util.List<Card>> Cols, java.util.List<Card> Deck ){
         cols=Cols;
         deck=Deck;
@@ -149,9 +143,14 @@ public class User extends Player implements Serializable{
         zeroStayed=false;
     }
 
+<<<<<<< HEAD
     public User (){
 
 
     }
+=======
+    public User(){}
+
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
 
 }

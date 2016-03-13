@@ -27,14 +27,26 @@ public class testGame {
     @Test
     public void testInitialDeal() {
         Game g = new Game();
+<<<<<<< HEAD
         g.theUser.initialDeal();
+=======
+        User u = new User();
+        u.hostGame = g;
+        u.initialDeal();
+
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         assertEquals(2, g.cols.get(0).size());
     }
 
     @Test //test if the col size increase after hitting
     public void testColSizeAfterHit(){
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         g.cols.add(new ArrayList<Card>());
         g.theUser.hit(0);
 
@@ -44,7 +56,12 @@ public class testGame {
     @Test //test if user can hit when isStay is true
     public void testisStayForHit() {
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         g.cols.add(new ArrayList<Card>());
         g.theUser.zeroStayed = true;
         g.theUser.hit(0);
@@ -55,6 +72,11 @@ public class testGame {
     @Test //test if user can hit after busted
     public void testisStayAfterBusted() {
         Game g = new Game();
+<<<<<<< HEAD
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         Card card3 = new Card(10, Suit.Hearts, true);
@@ -67,12 +89,30 @@ public class testGame {
         assertEquals(true, g.theUser.isBusted);
     }
 
+<<<<<<< HEAD
+=======
+    @Test
+    public void testHitFor3rdCol() {
+        Game g = new Game();
+        User u = new User();
+        u.hostGame = g;
+        Card card1 = new Card(10, Suit.Clubs, true);
+        Card card2 = new Card(10, Suit.Diamonds, true);
+        g.cols.add(new ArrayList<Card>());
+        g.dealCardToCol(3,card1);
+        g.dealCardToCol(3,card2);
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
 
 
     @Test
     public void testStay(){
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
@@ -86,8 +126,13 @@ public class testGame {
     @Test
     public void testNotStay(){
         Game g = new Game();
+<<<<<<< HEAD
 
          
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
@@ -101,8 +146,13 @@ public class testGame {
     @Test
     public void testStayForBusted(){
         Game g = new Game();
+<<<<<<< HEAD
 
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         Card card3 = new Card(10, Suit.Hearts, true);
@@ -119,7 +169,12 @@ public class testGame {
     @Test
     public void testStayFor0ColBusted(){
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
@@ -134,7 +189,12 @@ public class testGame {
     @Test
     public void testStayFor1ColBusted(){
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(10, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.cols.add(new ArrayList<Card>());
@@ -149,8 +209,14 @@ public class testGame {
     @Test
     public void testDoubleDown(){
         Game g = new Game();
+<<<<<<< HEAD
 
         int result = g.theUser.doubleDown(20);
+=======
+        User u = new User();
+        u.hostGame = g;
+        int result = u.doubleDown(20);
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
 
         assertEquals(40, result);
     }
@@ -158,6 +224,11 @@ public class testGame {
     @Test
     public void testSplit(){
         Game g = new Game();
+<<<<<<< HEAD
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(8, Suit.Diamonds, true);
         g.theUser.dealCardToCol(0, card1);
@@ -171,6 +242,11 @@ public class testGame {
     @Test
     public void testNotSplit() {
         Game g = new Game();
+<<<<<<< HEAD
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(10, Suit.Diamonds, true);
         g.theUser.dealCardToCol(0, card1);
@@ -183,7 +259,12 @@ public class testGame {
     @Test
     public void testSplitForOneCard(){
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(8, Suit.Clubs, true);
         g.theUser.dealCardToCol(0, card1);
         g.theUser.split();
@@ -194,7 +275,12 @@ public class testGame {
     @Test
     public void testSplitWithOneCardIn2ndCol(){
         Game g = new Game();
+<<<<<<< HEAD
 
+=======
+        User u = new User();
+        u.hostGame = g;
+>>>>>>> 1b2dfabfa0f0e24676867cd0f898f50f0b88632b
         Card card1 = new Card(8, Suit.Clubs, true);
         Card card2 = new Card(9, Suit.Clubs, true);
         Card card3 = new Card(7, Suit.Clubs, true);
